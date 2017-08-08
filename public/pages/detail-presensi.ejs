@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta class="description" content="">
+  <meta class="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>PRESENSI</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/materialize.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script src="/js/jquery.min.js"></script>
+  <script src="/controller/detail-presensi.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/controller/login.js"></script>
+  <script src="/js/style.js"></script>
+  <script>
+         $(document).ready(function() {
+         $('select').material_select();
+  });
+  </script>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="text-tengah w-100" style="position:absolute;  font-family: 'Vibur', serif;">
+        <h5>Presensi Online</h5>
+      </div>
+      <div class="nav-wrapper">
+        <ul class="left">
+          <li><a id="back-button" class="navbar-icon navbar-icon-font"><i class="fa fa-arrow-left"></i></a></li>
+        </ul>
+        <ul class="right">
+          <li><a class="navbar-icon-font"><i class="fa fa-power-off"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="body w-100 padding-atasbawah-15 bg-body">
+    <div class="col-md-12 bagan">
+      <div class="w-100 text-tengah">
+        <div class="w-1 absolut kanan text-kanan" style="padding:5px">
+          <a class="btn-floating btn-large waves-effect waves-light red" id="print_presensi"><i class="fa fa-file" aria-hidden="true"></i></a>
+        </div>
+        <div class="pin w-100">
+          <span><i class="fa fa-circle"></i></span>
+        </div>
+        <span class="konten-batas judulBagan white"><%= bulan %> / <%= tahun %></span>
+      </div>
+      <div class="w-100 white padding-form z-depth-2 container-presensi">
+        <div class="table-presensi text-tengah">
+            <table class="bordered w-100 centered">
+              <thead>
+                <tr>
+                  <th rowspan="2">NO</th>
+                  <th rowspan="2">NIS</th>
+                  <th rowspan="2">Nama</th>
+                  <th colspan="<%= sum %>"><%= bulan %></th>
+                </tr>
+                <tr>
+                  <% for(var i=1; i<=sum; i++) { %>
+                      <th>
+                        <%= i %>
+                      </th>
+                  <% } %>
+                </tr>
+              </thead>
+              <tbody>
+                <%
+                  var temp = "";
+                  var no = 0;
+                  for(var i=0; i < data.length; i++) {
+                    if(i==0){
+                      temp = data[i].NIS;
+                      no++;
+                      %>
+                      <tr>
+                      <td><%= no %></td>
+                      <td><%= data[i].NIS %></td>
+                      <td><%= data[i].nama_siswa %></td>
+                      <%
+                      for(var a=1; a <= sum; a++){
+                        var status = "";
+                        for(var b=0; b < data.length; b++) {
+                          if(data[b].tanggal_absensi_harian == a && data[b].NIS == data[i].NIS){
+                            if(data[b].status==1){
+                              status = "M";
+                            }else if(data[b].status==3){
+                              status = "X";
+                            }else if(data[b].status==2){
+                              status = "I";
+                            }
+                          }
+                        }
+                        if(status==""){%>
+                          <td>-</td>
+                        <%}else{%>
+                          <td><%= status %></td>
+                        <%}
+                      }%>
+                    </tr>
+                      <%
+                    }else{
+                      if(data[i].NIS != temp){
+                          temp = data[i].NIS;
+                          no++;%>
+                          <tr>
+                          <td><%= no %></td>
+                          <td><%= data[i].NIS %></td>
+                          <td><%= data[i].nama_siswa %></td>
+                          <%
+                          for(var a=1;a <= sum; a++){
+                            var status = "";
+                            for(var b=0; b< data.length; b++) {
+                              if(data[b].tanggal_absensi_harian == a && data[b].NIS == data[i].NIS){
+                                if(data[b].status==1){
+                                  status = "M";
+                                }else if(data[b].status==3){
+                                  status = "B";
+                                }else if(data[b].status==2){
+                                  status = "I";
+                                }
+                              }
+                            }
+                            if(status==""){%>
+                              <td>-</td>
+                            <%}else{%>
+                              <td><%= status %></td>
+                            <%}
+                          }%>
+                        </tr>
+                          <%
+                      }
+                    }
+                } %>
+              </tbody>
+            </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="kiri w-100">
+    <% include ../include/footer %>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<script>
+  $(function(){
+    $(".navbar-icon").sideNav();
+  });
+</script>
+<nav>
+  <div class="text-tengah w-100" style="position:absolute;  font-family: 'Vibur', serif;">
+    <h5>Presensi Online</h5>
+  </div>
+  <div class="nav-wrapper">
+    <ul class="left">
+      <li><a data-activates="slide-out" class="navbar-icon navbar-icon-font"><i class="fa fa-align-justify"></i></a></li>
+    </ul>
+    <ul class="right">
+      <li><a class="navbar-icon-font" href="/logout"><i class="fa fa-power-off"></i></a></li>
+    </ul>
+  </div>
+</nav>
+<ul id="slide-out" class="side-nav">
+    <li><a href="/dashboard">HOME<i class="fa fa-home"></i></a></li>
+    <li><a href="/presensi">PRESENSI<i class="fa fa-list-alt"></i></a></li>
+    <li><a href="/add">TAMBAH PRESENSI<i class="fa fa-plus"></i></a></li>
+</ul>

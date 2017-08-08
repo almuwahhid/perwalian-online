@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta class="description" content="">
+  <meta class="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>PRESENSI</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script src="/js/jquery.min.js"></script>
+  <script src="/controller/Fungsi.js"></script>
+  <script src="/js/style.js"></script>
+  <!-- <% include ../controller/Fungsi.js %> -->
+</head>
+<body onload="window.print()">
+  <div class="col-md-12 pad10">
+    <div class="col-md-12">
+      <header class="text-tengah">
+        <h3>LAPORAN PRESENSI</h3>
+        <h5><%= mapel_name %> / <%= jurusan_name %></h5>
+        <span>Bulan  : <%= bulan %> / <%= semester.semester_txt %> <%= semester.tahun %></span>
+      </header>
+      <hr style="border-top:2px solid black">
+      <br><br>
+
+      <table class="table table-bordered w-100 text-tengah centered print-small">
+        <thead>
+          <tr class="text-tengah">
+            <th rowspan="2" style="text-align:center">NO</th>
+            <th rowspan="2" style="text-align:center">NIS</th>
+            <th rowspan="2" style="text-align:center">Nama</th>
+            <th colspan="<%= sum %>" style="text-align:center"><%= bulan %></th>
+          </tr>
+          <tr>
+            <% for(var i=1; i<=sum; i++) { %>
+                <th class="print-smallest">
+                  <%= i %>
+                </th>
+            <% } %>
+          </tr>
+        </thead>
+        <tbody>
+          <%
+            var temp = "";
+            var no = 0;
+            for(var i=0; i < data.length; i++) {
+              if(i==0){
+                temp = data[i].NIS;
+                no++;
+                %>
+                <tr>
+                <td><%= no %></td>
+                <td><%= data[i].NIS %></td>
+                <td><%= data[i].nama_siswa %></td>
+                <%
+                for(var a=1; a <= sum; a++){
+                  var status = "";
+                  for(var b=0; b < data.length; b++) {
+                    if(data[b].tanggal_absensi_harian == a && data[b].NIS == data[i].NIS){
+                      if(data[b].status==1){
+                        status = "M";
+                      }else if(data[b].status==3){
+                        status = "B";
+                      }else if(data[b].status==2){
+                        status = "I";
+                      }
+                    }
+                  }
+                  if(status==""){%>
+                    <td class="print-smallest">-</td>
+                  <%}else{%>
+                    <td class="print-smallest"><%= status %></td>
+                  <%}
+                }%>
+              </tr>
+                <%
+              }else{
+                if(data[i].NIS != temp){
+                    temp = data[i].NIS;
+                    no++;%>
+                    <tr>
+                    <td><%= no %></td>
+                    <td><%= data[i].NIS %></td>
+                    <td><%= data[i].nama_siswa %></td>
+                    <%
+                    for(var a=1;a <= sum; a++){
+                      var status = "";
+                      for(var b=0; b< data.length; b++) {
+                        if(data[b].tanggal_absensi_harian == a && data[b].NIS == data[i].NIS){
+                          if(data[b].status==1){
+                            status = "M";
+                          }else if(data[b].status==0){
+                            status = "B";
+                          }else if(data[b].status==2){
+                            status = "I";
+                          }
+                        }
+                      }
+                      if(status==""){%>
+                        <td class="print-smallest">-</td>
+                      <%}else{%>
+                        <td class="print-smallest"><%= status %></td>
+                      <%}
+                    }%>
+                  </tr>
+                    <%
+                }
+              }
+          } %>
+        </tbody>
+      </table>
+      <br><br><br><br><br><br><br><br>
+
+    </div>
+  </div>
+  <div class="col-md-12 marg15-top">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2 text-tengah">
+      <%= tanggal %>
+    </div>
+    <div class="col-md-10">
+    </div>
+    <br><br><br><br>
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2 text-tengah">
+      (.............................................)
+    </div>
+  </div>
+</body>
+</html>

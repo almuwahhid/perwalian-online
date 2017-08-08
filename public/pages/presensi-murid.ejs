@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta class="description" content="">
+  <meta class="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>PRESENSI</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/materialize.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+  <script src="/js/jquery.min.js"></script>
+  <script src="/controller/Fungsi.js"></script>
+  <script src="/controller/presensi-murid.js"></script>
+  <script src="/js/materialize.js"></script>
+  <script src="/js/style.js"></script>
+  <script>
+         $(document).ready(function() {
+         $('select').material_select();
+  });
+  </script>
+</head>
+<body  style="background-color:#93b2b1">
+  <div class="w-100 bg full-height" style="background-image: url('gambar/bg.png'); position:fixed">
+  </div>
+  <header>
+    <nav>
+      <div class="text-tengah w-100" style="position:absolute;  font-family: 'Vibur', serif;">
+        <h5><%= data[0].nama_siswa %></h5>
+      </div>
+      <div class="nav-wrapper">
+        <ul class="left">
+          <li><a id="back-button" class="navbar-icon navbar-icon-font"><i class="fa fa-arrow-left"></i></a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <div class="w-100 padding-atasbawah-15">
+    <div class="container">
+      <div class="col-md-12 bagan">
+        <div class="w-100 text-tengah">
+          <div class="pin w-100">
+            <span><i class="fa fa-circle"></i></span>
+          </div>
+          <span class="konten-batas judulBagan white">DETAIL SISWA</span>
+        </div>
+        <div class="w-100 white padding-form z-depth-2">
+          <div class="w-100">
+            <section class="col-md-6 judulBagan text-kanan">NIS</section>
+            <section class="col-md-6" id="nis_info"><%= data[0].NIS %></section>
+          </div>
+          <div class="w-100">
+            <section class="col-md-6 judulBagan text-kanan">NAMA</section>
+            <section class="col-md-6"><%= data[0].nama_siswa %></section>
+          </div>
+          <div class="w-100">
+            <section class="col-md-6 judulBagan text-kanan">JENIS KELAMIN</section>
+            <section class="col-md-6"><%= data[0].jk_siswa %></section>
+          </div>
+          <div class="w-100">
+            <section class="col-md-6 judulBagan text-kanan">JURUSAN</section>
+            <section class="col-md-6"><%= data[0].nama_jurusan %></section>
+          </div>
+          <div class="w-100">
+            <section class="col-md-6 judulBagan text-kanan">TANGGAL LAHIR</section>
+            <section class="col-md-6"><%= data[0].tgl_lahir_siswa %></section>
+          </div>
+          <div class="w-100">
+            <section class="col-md-6 judulBagan text-kanan">TEMPAT LAHIR</section>
+            <section class="col-md-6"><%= data[0].tmp_lahir_siswa %></section>
+          </div>
+          <div class="w-100">
+            <section class="col-md-6 judulBagan text-kanan">ALAMAT</section>
+            <section class="col-md-6"><%= data[0].alamat %></section>
+          </div>
+          <div class="w-100">
+            <section class="col-md-6 judulBagan text-kanan">TAHUN MASUK</section>
+            <section class="col-md-6"><%= data[0].tahun_masuk_siswa %></section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-100 padding-atasbawah-15">
+    <div class="container">
+      <div class="col-md-12 bagan">
+        <div class="w-100 text-tengah">
+          <span class="konten-batas judulBagan white">DAFTAR PRESENSI HARI INI</span>
+        </div>
+        <div class="w-100 white padding-form z-depth-2">
+
+          <table class="bordered w-100 centered">
+            <thead>
+              <tr>
+                <th style="width:10px">NO</th>
+                <th>Nama Pelajaran</th>
+                <th>Status Presensi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <%
+                var no = 0;
+                    for(var i=0; i< data.length; i++){
+                      no++;
+                      %>
+                      <tr>
+                      <td><%= no %></td>
+                      <td><%= data[i].nama_mapel %></td>
+                      <td>
+                        <%
+                        var belumAbsen = true;
+                        for(var a=0; a< data_absen.length; a++){
+                          if(data_absen[a].id_mapel == data[i].id_mapel){
+                            belumAbsen = false;
+                            if(data_absen[a].status==1){
+                              status = "Masuk";
+                            }else if(data_absen[a].status==3){
+                              status = "Bolos";
+                            }else if(data_absen[a].status==2){
+                              status = "Izin";
+                            }
+                          }
+                        }
+                        if(belumAbsen){
+                          status = "Belum Absensi";
+                        }
+                        %>
+                        <%= status %>
+                      </td>
+                    </tr>
+                      <%
+                    }
+              %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

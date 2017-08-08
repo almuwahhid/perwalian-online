@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta class="description" content="">
+  <meta class="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>PRESENSI</title>
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <script src="/js/jquery.min.js"></script>
+  <script src="/controller/Fungsi.js"></script>
+  <script src="/js/style.js"></script>
+  <!-- <% include ../controller/Fungsi.js %> -->
+  <% function parseSemesterToMonth(data){
+    var month = [];
+    var smt = data.charAt(0);
+    if(smt == 1){
+      month [0] = "Januari";
+      month [1] = "Februari";
+      month [2] = "Maret";
+      month [3] = "April";
+      month [4] = "Mei";
+      month [5] = "Juni";
+    }else if(smt == 2){
+      month [0] = "Juli";
+      month [1] = "Agustus";
+      month [2] = "September";
+      month [3] = "Oktober";
+      month [4] = "November";
+      month [5] = "Desember";
+    }
+    return month;
+  }
+
+  function parseSemesterToNumber(data){
+    var month = [];
+    var smt = data.charAt(0);
+    if(smt == 1){
+      month [0] = 1;
+      month [1] = 2;
+      month [2] = 3;
+      month [3] = 4;
+      month [4] = 5;
+      month [5] = 6;
+    }else if(smt == 2){
+      month [0] = 7;
+      month [1] = 8;
+      month [2] = 9;
+      month [3] = 10;
+      month [4] = 11;
+      month [5] = 12;
+    }
+    return month;
+  }
+
+  function getNamePresensi(data){
+    var value = [];
+    var temp=0;
+    for(var i in data){
+      if(i==0){
+        value[i] = data[i].nama_siswa;
+      }else{
+        if(data[i].nama_siswa != value[temp]){
+          temp++;
+          value[temp] = data[i].nama_siswa;
+        }
+      }
+    }
+    return value;
+  }
+  function getNISPresensi(data){
+    var value = [];
+    var temp=0;
+    for(var i in data){
+      if(i==0){
+        value[i] = data[i].NIS;
+      }else{
+        if(data[i].NIS != value[temp]){
+          temp++;
+          value[temp] = data[i].NIS;
+        }
+      }
+    }
+    return value;
+  }
+
+  function getSakitInMonth(data, nis, month){
+    var sum = 0;
+    for(var i in data){
+      if(data[i].NIS == nis && data[i].bulan_absensi_harian == month && data[i].status == 2){
+        sum++;
+      }
+    }
+    return sum;
+  }
+
+  function getBolosInMonth(data, nis, month){
+    var sum = 0;
+    for(var i in data){
+      if(data[i].NIS == nis && data[i].bulan_absensi_harian == month && data[i].status == 3){
+        sum++;
+      }
+    }
+    return sum;
+  }
+
+  function getMasukInMonth(data, nis, month){
+    var sum = 0;
+    for(var i in data){
+      if(data[i].NIS == nis && data[i].bulan_absensi_harian == month && data[i].status == 1){
+        sum++;
+      }
+    }
+    return sum;
+  }
+  %>
+</head>
+<body onload="window.print()">
+  <div class="col-md-12 pad10">
+    <div class="col-md-12">
+      <header class="text-tengah">
+        <h3>LAPORAN PRESENSI</h3>
+        <h5><%= mapel_name %> / <%= jurusan_name %></h5>
+        <span>Semester : <%= semester.semester_txt %> <%= semester.tahun %></span>
+      </header>
+      <hr style="border-top:2px solid black">
+      <br><br>
+
+      <table id="hasil_table" class="table table-bordered w-100 text-tengah centered print-small">
+        <thead>
+          <tr>
+            <% for(var i = 0;i <= parseSemesterToMonth(semester.data).length++; i++){
+              if(i==0){
+              %>
+              <th rowspan="2" class="text-tengah">NO</th>
+              <th rowspan="2" class="text-tengah">Nama</th>
+              <th rowspan="2" class="text-tengah">NIS</th>
+              <% }else{
+                var a=i-1;%>
+              <th colspan="3" class="text-tengah"><%= parseSemesterToMonth(semester.data)[a] %></th>
+              <% } %>
+            <% } %>
+          </tr>
+          <tr>
+            <% for(var i = 1;i <= parseSemesterToMonth(semester.data).length; i++){ %>
+              <th class="print-smallest">Sakit</th>
+              <th class="print-smallest">Masuk</th>
+              <th class="print-smallest">Bolos</th>
+            <%
+              }
+            %>
+          </tr>
+        </thead>
+        <tbody>
+          <%
+          for(var x=0;x<getNamePresensi(datas).length;x++){
+            var no = x+1;%>
+            <tr>
+            <td><%= no %></td>
+            <td><%= getNamePresensi(datas)[x] %></td>
+            <td><%= getNISPresensi(datas)[x] %></td>
+            <% for(var a = 0;a < parseSemesterToNumber(semester.data).length; a++){
+              var b = a+1; %>
+              <td><%= getSakitInMonth(datas, getNISPresensi(datas)[x], parseSemesterToNumber(semester.data)[a]) %></td>
+              <td><%= getMasukInMonth(datas, getNISPresensi(datas)[x], parseSemesterToNumber(semester.data)[a]) %></td>
+              <td><%= getBolosInMonth(datas, getNISPresensi(datas)[x], parseSemesterToNumber(semester.data)[a]) %></td>
+            <%}%>
+            </tr>
+          <%}%>
+        </tbody>
+      </table>
+      <br><br><br><br><br><br><br><br>
+
+    </div>
+  </div>
+  <div class="col-md-12 marg15-top">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2 text-tengah">
+      <%= tanggal %>
+    </div>
+    <div class="col-md-10">
+    </div>
+    <br><br><br><br>
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2 text-tengah">
+      (.............................................)
+    </div>
+  </div>
+</body>
+</html>

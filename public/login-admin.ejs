@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>LOGIN ADMIN</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/login.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="controller/login-admin.js"></script>
+  <script src="js/style.js"></script>
+</head>
+<body class="bg-default">
+    <div class="login-form" style="margin-top: 300px;">
+      <h1>LOGIN ADMIN</h1>
+      <div class="form-group ">
+        <input type="text" class="form-control" name="username" placeholder="username" id="username">
+        <i class="fa fa-user"></i>
+      </div>
+      <div class="form-group log-status">
+        <input type="password" class="form-control" name="pw" placeholder="Password" id="pw">
+        <i class="fa fa-lock"></i>
+      </div>
+      <button class="log-btn" id="submit">Log in</button>
+    </div>
+ <div class="w-100 alert text-tengah" id="wait">TUNGGU</div>
+ <div class="w-100 alert text-tengah" id="failed">GAGAL</div>
+</body>
+</html>

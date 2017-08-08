@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>DASHBOARD</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/materialize.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/style.js"></script>
+</head>
+<body>
+  <header>
+    <% include ../include/header-admin %>
+  </header>
+  <div class="body w-100 padding-atasbawah-15 bg-body">
+    <table class="table table-bordered">
+   <thead>
+     <tr>
+       <th>No</th>
+       <th>NIS</th>
+       <th>Nama Siswa</th>
+       <th>Jenis Kelamin</th>
+       <th>Alamat</th>
+       <th>Agama</th>
+       <th>AKSI</th>
+     </tr>
+   </thead>
+   <tbody>
+     <%
+     var x = 0;
+     for(var i=0; i < data_siswa.length; i++) {
+       x++;
+       var hps = "/hapusSiswa?nis="+data_siswa[i].NIS;
+       var es = "/edit-siswa?nis="+data_siswa[i].NIS %>
+     <tr>
+       <td><%= x %></td>
+       <td><%= data_siswa[i].NIS %></td>
+       <td><%= data_siswa[i].nama_siswa %></td>
+       <td><%= data_siswa[i].jk_siswa %></td>
+       <td><%= data_siswa[i].alamat %></td>
+       <td><%= data_siswa[i].agama %></td>
+
+       <td>
+         <a href=<%= hps %>>HAPUS</a> || <a href=<%= es %>>EDIT</a>
+       </td>
+     </tr>
+     <% } %>
+   </tbody>
+ </table>
+  </div>
+  <footer class="kiri w-100">
+    <% include ../include/footer %>
+  </footer>
+</body>
+</html>

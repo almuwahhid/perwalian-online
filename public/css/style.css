@@ -1,0 +1,192 @@
+*{
+  transition: .25s ease;
+}
+body{
+  font-family: arial;
+  margin: 0 auto;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+/* TODO: CSS - Pengaturan warna */
+.bg-default{
+  background-color: #69BA66;
+}
+.bg-body{
+	background-color:#EDF2EE;
+}
+.bg-header{
+	background-color:#EDF2EE;
+}
+.white{
+  background-color: white;
+}
+
+
+/* TODO: CSS - Pengaturan Margin */
+.margin-top-15{
+  margin-top: 15px;
+}
+.konten-batas{
+  padding: 15px;
+}
+.konten-batas-kiri{
+  padding-left: 15px;
+}
+.m80-top{
+  margin-top: 80px;
+}
+
+/* TODO: CSS - Pengaturan Ukuran */
+.judul{
+  font-weight: bold;
+  font-size: xx-large;
+}
+.absolut{
+  position: absolute;
+}
+.fix{
+  position: fixed;
+}
+.w-100, .w-30, .w-50, .w-1, .w-10, .w-15, .w-20, .w-12, .w-80, .w-75{
+	float : left;
+}
+.w-100{
+	width:100%;
+}
+.w-1{
+	width: 1%;
+}
+.w-30{
+	width:32%;
+}
+.w-50{
+	width:50%;
+}
+.w-60{
+	width:66%;
+}
+.w-80{
+	width:80%;
+}
+.w-75{
+	width:75%;
+}
+.w-10{
+	width:10%;
+}
+.w-15{
+	width:15%;
+}
+.w-20{
+	width:20%;
+}
+.w-12{
+	width:12%;
+}
+@media (min-width: 715px) {
+  .lebar-login{
+    width: 50%;
+  }
+}
+@media (max-width: 714px) {
+    .lebar-login{
+      width: 100%;
+    }
+}
+.navbar-icon-font{
+  font-size: 25px;
+}
+/* TODO: CSS - Pengaturan Padding */
+.padding-atas-15{
+  padding-top: 15px;
+}
+.padding-atasbawah-15{
+  padding: 15px 0;
+}
+.padding-kanankiri-15{
+  padding: 0 15px;
+}
+.padding-form{
+  padding: 15px;
+}
+/* TODO: CSS - Pengaturan Tata Letak */
+.text-tengah{
+  text-align: center;
+}
+.text-kanan{
+	text-align: right;
+}
+.text-kiri{
+	text-align: left;
+}
+.text-justify{
+	text-align: justify;
+}
+/* TODO: CSS - Pengaturan Efek */
+.bayang{
+	-moz-box-shadow : 0px 0.01px 8px #636968;
+	-webkit-box-shadow : 0px 0.01px 8px #636968;
+	box-shadow: 0px 0.01px 8px #636968;
+}
+
+/* TODO: CSS - Pengaturan Konten */
+.input{
+  padding : 10px;
+
+}
+.copyriht{
+  font-size: 10px;
+}
+.print-small{
+  font-size: 10px;
+}
+.print-smallest{
+  font-size: 8px;
+}
+.kanan{
+  float: right;
+}
+.kiri{
+  float: left;
+}
+.judulBagan{
+  font-size: 15px;
+  font-weight: bold;
+  font-family: monospace;
+}
+.isiBagan{
+  font-size: 15px;
+  font-weight: bold;
+  font-family: monospace;
+}
+.bagan{
+  margin-top: 15px;
+}
+@media (max-width: 991px) {
+  .bagan{
+    margin-top: 30px;
+  }
+}
+.pin{
+  font-size: 10px;
+}
+.table-presensi{
+  width: 2000px;
+}
+.container-presensi{
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.display-none{
+  display: none;
+}
+.bg{
+
+    /**background-size: cover;**/
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: bottom;
+}
+.bold{
+  font-weight: bold;
+}

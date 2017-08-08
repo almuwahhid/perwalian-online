@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>TAMBAH SISWA</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/materialize.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/style.js"></script>
+</head>
+<body>
+  <header>
+    <% include ../include/header-admin %>
+  </header>
+  <div class="body w-100 padding-atasbawah-15 bg-body" style="margin-top:50px">
+    <h3 style="text-align:center">EDIT SISWA</h3>
+    <form class="" action="/prosesEditSiswa" method="post">
+      <table class="table table-bordered col-md-8">
+        <input type="hidden" name="nis" value="<%= siswa[0].NIS %>">
+        <tr>
+          <td>Nama Siswa</td>
+          <td>
+            <input type="text" name="nama_siswa" value="<%= siswa[0].nama_siswa %>">
+          </td>
+        </tr>
+        <tr>
+          <td>Nama Ayah</td>
+          <td>
+            <input type="text" name="nama_ayah" value="<%= siswa[0].nama_ayah %>">
+          </td>
+        </tr>
+        <tr>
+          <td>Tanggal Lahir</td>
+          <td>
+            <input type="date" name="tgl_lahir_siswa" value="<%= siswa[0].tgl_lahir_siswa %>">
+          </td>
+        </tr>
+        <tr>
+          <td>Tempat Lahir</td>
+          <td>
+            <input type="text" name="tmp_lahir_siswa" value="<%= siswa[0].tmp_lahir_siswa %>">
+          </td>
+        </tr>
+
+        <tr>
+          <td>Jenis Kelamin</td>
+          <td>
+            <select class="form-control" name="jk_siswa">
+                <option value='Laki Laki'>Laki Laki</option>
+                <option value='Perempuan'>Perempuan</option>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td>Alamat</td>
+          <td>
+            <textarea name="alamat" class="col-md-12" rows="4"><%= siswa[0].alamat %></textarea>
+          </td>
+        </tr>
+        <tr>
+          <td>Agama</td>
+          <td>
+            <input type="text" name="agama" value="<%= siswa[0].agama %>">
+          </td>
+        </tr>
+        <tr>
+          <td>Jurusan</td>
+          <td>
+            <select class="form-control" name="id_jurusan">
+              <%
+              for(var i=0; i < jurusan.length; i++) {%>
+                <option value='<%= jurusan[i].id_jurusan %>'><%= jurusan[i].nama_jurusan %></option>
+              <% } %>
+            </select>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2"><input type="submit" class="btn btn-success w-100" name="" value="EDIT SISWA"></td>
+        </tr>
+      </table>
+    </form>
+  </div>
+  <footer class="kiri w-100">
+    <% include ../include/footer %>
+  </footer>
+</body>
+</html>

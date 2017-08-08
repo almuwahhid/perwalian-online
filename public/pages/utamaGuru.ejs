@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>DASHBOARD</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/materialize.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="controller/login.js"></script>
+  <script src="js/style.js"></script>
+</head>
+<body>
+  <header>
+      <% include ../include/header %>
+  </header>
+  <div class="body w-100 padding-atasbawah-15 bg-body">
+    <h5></h5>
+    <div class="col-md-4 bagan">
+      <div class="w-100 text-tengah">
+        <div class="pin w-100">
+          <span><i class="fa fa-circle"></i></span>
+        </div>
+        <span class="konten-batas judulBagan white">TENTANG GURU</span>
+      </div>
+      <div class="w-100 white padding-form z-depth-2">
+        <section class="w-100 judulBagan">NIP</section>
+        <section class="w-100 text-kanan"><%= data_dosen[0].NIP %></section>
+        <section class="w-100 judulBagan">NAMA</section>
+        <section class="w-100 text-kanan"><%= data_dosen[0].nama_guru %></section>
+        <section class="w-100 judulBagan">ALAMAT</section>
+        <section class="w-100 text-kanan"><%= data_dosen[0].alamat_guru %></section>
+        <section class="w-100 judulBagan">JENIS KELAMIN</section>
+        <section class="w-100 text-kanan"><%= data_dosen[0].jenis_kelamin %></section>
+        <section class="w-100 judulBagan">NO TELP</section>
+        <section class="w-100 text-kanan"><%= data_dosen[0].no_telp %></section>
+        <section class="w-100 judulBagan">TANGGAL LAHIR</section>
+        <section class="w-100 text-kanan"><%= data_dosen[0].tgl_lahir_guru %></section>
+        <section class="w-100 judulBagan">TEMPAT LAHIR</section>
+        <section class="w-100 text-kanan"><%= data_dosen[0].tmp_lahir_guru %></section>
+      </div>
+    </div>
+    <div class="col-md-8 bagan">
+      <div class="w-100 text-tengah">
+        <div class="pin w-100">
+          <span><i class="fa fa-circle"></i></span>
+        </div>
+        <span class="konten-batas judulBagan white">INFORMASI MENGAJAR</span>
+      </div>
+      <div class="w-100 white padding-form z-depth-2">
+        <table class="w-100 highlight centered">
+       <thead>
+         <tr>
+             <th data_dosen-field="id">Jurusan</th>
+             <th data_dosen-field="name">Kelas</th>
+             <th data_dosen-field="price">Mata Pelajaran</th>
+         </tr>
+       </thead>
+
+       <tbody>
+         <% for(var i=0; i < data_mapel.length; i++) { %>
+           <tr>
+             <td><%= data_mapel[i].nama_jurusan %></td>
+             <td><%= data_mapel[i].kelas %></td>
+             <td><%= data_mapel[i].nama_mapel %></td>
+           </tr>
+           <% } %>
+       </tbody>
+     </table>
+      </div>
+    </div>
+  </div>
+  <footer class="kiri w-100">
+    <% include ../include/footer %>
+  </footer>
+</body>
+</html>

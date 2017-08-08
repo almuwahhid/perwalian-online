@@ -1,0 +1,21 @@
+{
+  "name": "index.js",
+  "version": "1.0.0",
+  "description": "Aplikasi presensi menggunakan node js",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "qwert123"
+  ],
+  "author": "wawan setiawan",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.0",
+    "express-session": "^1.15.1",
+    "node-uuid": "^1.4.7",
+    "mysql" : "^2.13.0"
+  }
+}

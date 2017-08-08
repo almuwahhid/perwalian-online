@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+  <title>TAMBAH PRESENSI</title>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/materialize.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="js/jquery.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="controller/Fungsi.js"></script>
+  <script src="controller/tambahPresensi.js"></script>
+  <script src="js/style.js"></script>
+  <script>
+         $(document).ready(function() {
+         $('select').material_select();
+  });
+  </script>
+</head>
+<body>
+  <header>
+      <% include ../include/header %>
+  </header>
+  <div class="body w-100 padding-atasbawah-15 bg-body">
+    <div class="container">
+      <div class="col-md-12 bagan">
+        <div class="w-100 text-tengah">
+          <div class="pin w-100">
+            <span><i class="fa fa-circle"></i></span>
+          </div>
+          <span class="konten-batas judulBagan white">KOLOM PENCARIAN</span>
+        </div>
+        <div class="w-100 white padding-form z-depth-2">
+          <div class="col-md-4">
+            <div class="w-100 input-field">
+               <select id="input0">
+                 <% for(var i=0; i < data_jurusan.length; i++) { %>
+                   <option value="<%= data_jurusan[i].id_jurusan%>"><%= data_jurusan[i].nama_jurusan %></option>
+                  <% } %>
+               </select>
+               <label>Jurusan</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="w-100 input-field">
+               <select disabled id="input1">
+               </select>
+               <label>Kelas</label>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="w-100 input-field">
+               <select disabled id="input2">
+               </select>
+               <label>Mata Pelajaran</label>
+            </div>
+          </div>
+          <div class="col-md-12 text-tengah">
+              <a class="waves-effect disabled waves-light btn" id="btn-cari">CARI</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- part 2 -->
+    <div class="col-md-12 bagan display-none" id="hasil">
+      <div class="w-100 text-tengah">
+        <div class="pin w-100">
+          <span><i class="fa fa-circle"></i></span>
+        </div>
+        <span class="konten-batas judulBagan white"><%= now %></span>
+      </div>
+      <div class="w-100 white padding-form z-depth-2">
+        <div class="w-100 text-tengah">
+            <table class="bordered w-100 centered" id="hasil_table">
+              <!-- <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIS</th>
+                  <th>Nama</th>
+                  <th>Pilihan</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>135410025</td>
+                  <td>Muhammad Abdullah Al Muwahhid</td>
+                  <td>
+                    <div class="col-md-4">
+                      <input class="with-gap" name="group1" type="radio" id="test1"  />
+                      <label for="test1">Hadir</label>
+                    </div>
+                    <div class="col-md-4">
+                      <input class="with-gap" name="group1" type="radio" id="test2"  />
+                      <label for="test2">Izin</label>
+                    </div>
+                    <div class="col-md-4">
+                      <input class="with-gap" name="group1" type="radio" id="test3"  />
+                      <label for="test3">Alfa</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>135410025</td>
+                  <td>Muhammad Abdullah Al Muwahhid</td>
+                  <td>
+                    <div class="col-md-4">
+                      <input class="with-gap" name="group2" type="radio" id="test4"  />
+                      <label for="test4">Hadir</label>
+                    </div>
+                    <div class="col-md-4">
+                      <input class="with-gap" name="group2" type="radio" id="test5"  />
+                      <label for="test5">Izin</label>
+                    </div>
+                    <div class="col-md-4">
+                      <input class="with-gap" name="group2" type="radio" id="test6"  />
+                      <label for="test6">Alfa</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody> -->
+            </table>
+            <div class="col-md-12 text-tengah margin-top-15">
+                <a id="submit" class="waves-effect waves-light btn">SUBMIT</a>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer class="kiri w-100">
+    <% include ../include/footer %>
+  </footer>
+  <% include ../include/loading %>
+</body>
+</html>
